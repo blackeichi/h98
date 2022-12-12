@@ -53,7 +53,10 @@ export const LoginBox = styled.div`
   padding-top: 20px;
   z-index: 3;
   border-radius: 2px;
-  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-bottom: 4px solid ${(props) => props.theme.darkGray};
+  border-right: 4px solid ${(props) => props.theme.darkGray};
+  border-top: 4px solid rgba(255, 255, 255, 0.7);
+  border-left: 4px solid rgba(255, 255, 255, 0.7);
   background-color: ${(props) => props.theme.grayColor};
 `;
 export const Wrapper = styled.div`
@@ -66,17 +69,7 @@ export const Wrapper = styled.div`
     flex-direction: column;
   }
 `;
-export const Border = styled.div`
-  width: 100%;
-  height: 200px;
-  z-index: 2;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  box-sizing: border-box;
-  border: 20px solid ${(props) => props.theme.grayColor};
-  border-top: 50px solid ${(props) => props.theme.grayColor};
-`;
+
 export const Image = styled.img`
   height: 80%;
   min-height: 600px;

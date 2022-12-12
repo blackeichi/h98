@@ -4,7 +4,6 @@ import { Header, IconImg, InfoText, Input, RowBox } from "../Components/Style";
 import { useForm } from "react-hook-form";
 import {
   BootImg,
-  Border,
   Box,
   ColBox,
   Container,
@@ -87,7 +86,6 @@ export const Loading = () => {
                 />
               </form>
             </Wrapper>
-            <Border></Border>
           </LoginBox>
           <Image2 />
           <Image3 />
