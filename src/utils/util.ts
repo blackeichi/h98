@@ -1,10 +1,8 @@
 export const Color = {
-  grayBg: "#EDEEF2",
-  blueColr: "#1A73E8",
-  darkBlue: "#1A68D5",
-  blackColr: "#32353F",
-  yellocolr: "#FFE34F",
-  lightBlue: "#edf7fa",
-  darkGray: "#727272",
-  redColor: "#f87171",
+  grayColor: "#C0C0C0",
+  darkGray: "#808080",
+  whiteColor: "#FFFFF4",
+  blueColor: "#0000AA",
+  lightGray: "#E6E6E6",
+  bgColor: "#007A7D",
 };

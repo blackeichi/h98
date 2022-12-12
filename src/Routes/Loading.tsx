@@ -1,40 +1,100 @@
 import React from "react";
-import styled from "styled-components";
-import { motion } from "framer-motion";
-
-const Box = styled.div`
-  width: 100%;
-  height: 100vh;
-`;
-const Container = styled(motion.div)`
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-`;
-const BootImg = styled(motion.img)`
-  height: 800px;
-  @media screen and (max-width: 1150px) {
-    height: 600px;
-  }
-  @media screen and (max-width: 850px) {
-    height: 350px;
-  }
-`;
+import { Icon } from "../Components/Icon";
+import { Header, IconImg, InfoText, Input, RowBox } from "../Components/Style";
+import { useForm } from "react-hook-form";
+import {
+  BootImg,
+  Border,
+  Box,
+  ColBox,
+  Container,
+  Image,
+  Image2,
+  Image3,
+  Image4,
+  LoadingText,
+  LoginBox,
+  Text,
+  Wrapper,
+} from "../Components/LoadingStyle";
 
 export const Loading = () => {
+  const { handleSubmit, register } = useForm();
+  const onValid = (data: any) => {
+    window.localStorage.setItem("h98-username", JSON.stringify(data.username));
+    window.location.reload();
+  };
   return (
     <Box>
-      <Container>
-        <BootImg
+      <Container
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+      >
+        <Container
           initial={{ opacity: 1 }}
           animate={{ opacity: 0 }}
-          transition={{ delay: 2 }}
-          src="/img/window booting.gif"
-        />
+          transition={{ delay: 4 }}
+        >
+          <BootImg src="/img/catoon.gif" />
+          <ColBox>
+            <LoadingText>CREATED BY</LoadingText>
+            <LoadingText style={{ fontSize: "70px" }}>BLACK H</LoadingText>
+          </ColBox>
+        </Container>
+        <Container
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 4.5 }}
+          style={{
+            backgroundImage: `linear-gradient(
+              rgba(0, 0, 0, 0.8),
+              rgba(0, 0, 0, 0.7),
+              rgba(0, 0, 0, 0.6)
+            ),
+            url("/img/neonRetro.jpg")`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <LoginBox>
+            <Header>
+              <RowBox style={{ width: "fit-content", gap: "4px" }}>
+                <IconImg src="/img/comIcon.png" />
+              </RowBox>
+              <Icon text="X" />
+            </Header>
+            <InfoText style={{ zIndex: 3 }}>
+              <img
+                style={{ width: "40px", marginRight: "10px" }}
+                src="/img/window key.PNG"
+              />
+              LOGIN PLEASEEEEE
+            </InfoText>
+            <Wrapper>
+              <InfoText>
+                <u>U</u>ser name:
+              </InfoText>
+              <form onSubmit={handleSubmit(onValid)}>
+                <Input
+                  {...register("username", {
+                    required: true,
+                  })}
+                  name="username"
+                  type="text"
+                  required
+                />
+              </form>
+            </Wrapper>
+            <Border></Border>
+          </LoginBox>
+          <Image2 />
+          <Image3 />
+          <Image4 />
+          <Image src="/img/paint.png" />
+          <Text>GAME!!</Text>
+        </Container>
       </Container>
     </Box>
   );
