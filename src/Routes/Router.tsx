@@ -10,7 +10,6 @@ const Router = () => {
   useEffect(() => {
     setExist(username);
   }, [username]);
-  console.log(username);
   return (
     <HashRouter>
       <Routes>

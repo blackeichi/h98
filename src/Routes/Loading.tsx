@@ -38,7 +38,7 @@ export const Loading = () => {
           <BootImg src="/img/catoon.gif" />
           <ColBox>
             <LoadingText>CREATED BY</LoadingText>
-            <LoadingText style={{ fontSize: "70px" }}>BLACK H</LoadingText>
+            <LoadingText style={{ fontSize: "70px" }}>HAN JW</LoadingText>
           </ColBox>
         </Container>
         <Container
