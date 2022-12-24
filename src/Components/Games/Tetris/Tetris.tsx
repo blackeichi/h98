@@ -29,13 +29,14 @@ const createLine = (background: React.RefObject<HTMLUListElement>) => {
   background.current?.prepend(li);
 };
 /* 블록 그리기 */
-const renderBlocks = () => {
+const renderBlocks = (background: any) => {
   const { type, direction, top, left } = tempMovingItem;
   //Blocks 에서 타입과 방향에 맞는 배열 4개(블록모양) 가져옴
   Blocks[type][direction].forEach((block: any) => {
     //4개의 각 배열에서 x와 y값 뽑아냄
     const x = block[0];
     const y = block[1];
+    const target = background.childNodes;
   });
 };
 
@@ -49,7 +50,7 @@ export const Tetris = () => {
         createLine(background);
       }
       tempMovingItem = { ...movingItem };
-      renderBlocks();
+      renderBlocks(background.current);
       setLoading(true);
     }
   }, []);
