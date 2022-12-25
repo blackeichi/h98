@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const Blocks: any = {
   Tshape: [
     [
+      [2, 0],
       [0, 0],
-      [0, 1],
-      [1, 0],
       [1, 1],
+      [1, 0],
     ],
     [[], [], [], []],
     [[], [], [], []],
