@@ -1,6 +1,56 @@
 .Tshape {
   background-color: #952d98;
-  border-top: 3px solid #a042a2;
-  border-left: 3px solid #a042a2;
+  border-top: 7px solid #a042a2;
+  border-left: 7px solid #a042a2;
+  border-bottom: 7px solid #4d1f4e;
+  border-right: 7px solid #4d1f4e;
+  box-sizing: border-box;
+}
+.Straight {
+  background-color: #009fda;
+  border-top: 7px solid #1aa9de;
+  border-left: 7px solid #1aa9de;
+  border-bottom: 7px solid #10698a;
+  border-right: 7px solid #10698a;
+  box-sizing: border-box;
+}
+.Square {
+  background-color: #fecb00;
+  border-top: 7px solid #fed01a;
+  border-left: 7px solid #fed01a;
+  border-bottom: 7px solid #aa8b11;
+  border-right: 7px solid #aa8b11;
+  box-sizing: border-box;
+}
+.Sskew {
+  background-color: #69be28;
+  border-top: 7px solid #78c53e;
+  border-left: 7px solid #78c53e;
+  border-bottom: 7px solid #457123;
+  border-right: 7px solid #457123;
+  box-sizing: border-box;
+}
+.Zskew {
+  background-color: #ed2939;
+  border-top: 7px solid #ef3e4d;
+  border-left: 7px solid #ef3e4d;
+  border-bottom: 7px solid #9b2832;
+  border-right: 7px solid #9b2832;
+  box-sizing: border-box;
+}
+.Jtetromino {
+  background-color: #0065bd;
+  border-top: 7px solid #1a74c4;
+  border-left: 7px solid #1a74c4;
+  border-bottom: 7px solid #0e4270;
+  border-right: 7px solid #0e4270;
+  box-sizing: border-box;
+}
+.Ltetromino {
+  background-color: #ff7900;
+  border-top: 7px solid #ff861a;
+  border-left: 7px solid #ff861a;
+  border-bottom: 7px solid #ab5a11;
+  border-right: 7px solid #ab5a11;
   box-sizing: border-box;
 }
