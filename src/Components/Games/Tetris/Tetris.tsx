@@ -8,9 +8,9 @@ export const Tetris = () => {
   //variables
   const cols = 10;
   const rows = 20;
-  let score = 0;
-  let duration = 600;
-  let downInterval: any;
+  const [score, setScore] = useState(0);
+  const [speed, setSpeed] = useState(600);
+  let autoDrop: any;
   let tempMovingItem: any;
   const movingItem = {
     type: "",
@@ -18,14 +18,8 @@ export const Tetris = () => {
     top: 0,
     left: 3,
   };
-  const gameText = document.querySelector(".game-text");
   const init = () => {
-    const scoreDisplay = document.querySelector(".score") as HTMLElement | null;
-    score = 0;
-    if (scoreDisplay) {
-      scoreDisplay.innerText = String(score);
-    }
-
+    setScore(0);
     const playground = document.querySelector(".background");
     //row의 숫자만큼 line 그리기
     for (let i = 0; i < rows; i++) {
@@ -72,7 +66,7 @@ export const Tetris = () => {
         tempMovingItem = { ...movingItem };
         // 만약 두 번 연속 블록이 못움직이면(moveType === "gameover"면) 게임종료.
         if (moveType === "gameover") {
-          clearInterval(downInterval);
+          clearInterval(autoDrop);
           Gameover();
           return true;
         }
@@ -128,14 +122,8 @@ export const Tetris = () => {
         child.remove();
         // 한 줄을 삭제하고 상단에 한 줄을 추가해주기 위해 prependNewLine()을 호출
         createLine(background);
-        score += 10;
-        const scoreDisplay = document.querySelector(
-          ".score"
-        ) as HTMLElement | null;
-        if (scoreDisplay) {
-          scoreDisplay.innerText = String(score);
-        }
-        duration =
+        setScore((prev) => prev + 10);
+        setSpeed(
           score <= 100
             ? 600
             : score <= 200
@@ -146,20 +134,21 @@ export const Tetris = () => {
             ? 300
             : score <= 500
             ? 200
-            : 100;
+            : 100
+        );
       }
     });
     generateNewBlock(background);
   };
   //블록 새로 생성
   const generateNewBlock = (background: any) => {
-    //clearInterval(downInterval); = 블록이 아래로 떨어지는 것을 잠시 중단
-    clearInterval(downInterval);
-    // 블록이 duration에 한번 아래로 한칸 이동
+    //clearInterval(autoDrop); = 블록이 아래로 떨어지는 것을 잠시 중단
+    clearInterval(autoDrop);
+    // 블록이 speed에 한번 아래로 한칸 이동
     // setInterval 로 다시 재개
-    downInterval = setInterval(() => {
+    autoDrop = setInterval(() => {
       moveBlock("top", 1, background);
-    }, duration);
+    }, speed);
     const blockArray = Object.entries(Blocks);
     const randomIndex = Math.floor(Math.random() * blockArray.length);
     movingItem.type = blockArray[randomIndex][0];
@@ -195,8 +184,8 @@ export const Tetris = () => {
 
   //블록을 빠르게 내려오게 하는 함수
   const dropBlock = (background: any) => {
-    clearInterval(downInterval);
-    downInterval = setInterval(() => {
+    clearInterval(autoDrop);
+    autoDrop = setInterval(() => {
       moveBlock("top", 1, background);
     }, 20);
   };
@@ -222,10 +211,10 @@ export const Tetris = () => {
     switch (e.code) {
       case "ArrowDown":
         {
-          clearInterval(downInterval);
-          downInterval = setInterval(() => {
+          clearInterval(autoDrop);
+          autoDrop = setInterval(() => {
             moveBlock("top", 1, background);
-          }, duration);
+          }, speed);
         }
         break;
     }
@@ -255,7 +244,7 @@ export const Tetris = () => {
   }, []);
   return (
     <Box>
-      <h1 className="score">0</h1>
+      <h1 className="score">{score}</h1>
       <Game>
         <ul className="background" ref={background}></ul>
       </Game>
