@@ -1,4 +1,53 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
+
+export const Game = styled.div`
+  background-color: white;
+  border: 3px solid rgba(0, 0, 0, 0.8);
+  ul {
+    @media screen and (max-height: 750px) {
+      width: 300px;
+    }
+    width: 350px;
+    margin: 0 auto;
+    li {
+      width: 100%;
+      @media screen and (max-height: 750px) {
+        height: 30px;
+      }
+      height: 35px;
+      ul {
+        display: flex;
+        li {
+          @media screen and (max-height: 750px) {
+            height: 30px;
+            width: 30px;
+          }
+          width: 35px;
+          height: 35px;
+          //box-shadow: -0.2px 0 #333, 0 0.2px #333, 0.2px 0 #333, 0 -0.2px #333;
+        }
+      }
+    }
+  }
+`;
+export const HomeBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+export const Title = styled.h1`
+  font-size: 80px;
+  font-weight: bold;
+`;
+export const BtnText = styled(motion.h1)`
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+`;
 
 export const Blocks: any = {
   Tshape: [
@@ -184,28 +233,3 @@ export const Blocks: any = {
     ],
   ],
 };
-
-export const Box = styled.div`
-  width: 600px;
-  height: 600px;
-  background-color: tomato;
-`;
-export const Game = styled.div`
-  background-color: white;
-  ul {
-    width: 250px;
-    margin: 0 auto;
-    li {
-      width: 100%;
-      height: 25px;
-      ul {
-        display: flex;
-        li {
-          width: 25px;
-          height: 25px;
-          box-shadow: -0.2px 0 #333, 0 0.2px #333, 0.2px 0 #333, 0 -0.2px #333;
-        }
-      }
-    }
-  }
-`;

@@ -1,10 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Blocks, Box, Game } from "./style";
+import { Icon } from "../../Icon";
+import {
+  Background,
+  Box,
+  Header,
+  IconImg,
+  InfoText,
+  Menu,
+  MenuText,
+  Overlay,
+  RowBox,
+  Wrapper,
+} from "../../CommonStyle";
+import { Blocks, BtnText, Game, HomeBox, Title } from "./style";
+
 import "./style.css";
 
 export const Tetris = () => {
   const background = useRef<HTMLUListElement>(null);
   const [loading, setLoading] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
   //variables
   const cols = 10;
   const rows = 20;
@@ -19,8 +34,9 @@ export const Tetris = () => {
     left: 3,
   };
   const init = () => {
-    setScore(0);
     const playground = document.querySelector(".background");
+    console.log("init");
+    setScore(0);
     //row의 숫자만큼 line 그리기
     for (let i = 0; i < rows; i++) {
       createLine(playground);
@@ -37,6 +53,7 @@ export const Tetris = () => {
       ul.prepend(pixel);
     }
     li.prepend(ul);
+    //console.log(background);
     background.prepend(li);
   };
 
@@ -67,7 +84,7 @@ export const Tetris = () => {
         // 만약 두 번 연속 블록이 못움직이면(moveType === "gameover"면) 게임종료.
         if (moveType === "gameover") {
           clearInterval(autoDrop);
-          Gameover();
+          Gameover(background);
           return true;
         }
         setTimeout(() => {
@@ -87,8 +104,10 @@ export const Tetris = () => {
   };
 
   //게임오버
-  const Gameover = () => {
+  const Gameover = (background: any) => {
     console.log("game over");
+    background.innerHTML = "";
+    init();
   };
 
   //블록 고정
@@ -222,32 +241,78 @@ export const Tetris = () => {
   useEffect(() => {
     if (!loading) {
       tempMovingItem = { ...movingItem };
-      init();
+      //init();
     }
     setLoading(true);
   }, [loading]);
-  useEffect(() => {
-    document.addEventListener("keydown", (event) => {
-      pressBtn(event, background.current);
-    });
-    document.addEventListener("keyup", (event) => {
-      upBtn(event, background.current);
-    });
-    return () => {
-      document.removeEventListener("keydown", (event) =>
-        pressBtn(event, background)
-      );
-      document.addEventListener("keyup", (event) => {
-        upBtn(event, background);
-      });
-    };
-  }, []);
   return (
     <Box>
-      <h1 className="score">{score}</h1>
-      <Game>
-        <ul className="background" ref={background}></ul>
-      </Game>
+      <Header style={{ width: "99%" }}>
+        <RowBox style={{ width: "fit-content", gap: "4px" }}>
+          <IconImg src="/img/comIcon.png" />
+        </RowBox>
+        <div style={{ display: "flex", gap: "8px" }}>
+          <Icon text="□" />
+          <Icon text="X" />
+        </div>
+      </Header>
+      <Menu>
+        <MenuText>
+          <u>F</u>ile
+        </MenuText>
+        <MenuText>
+          <u>E</u>dit
+        </MenuText>
+        <MenuText>
+          <u>H</u>elp
+        </MenuText>
+      </Menu>
+      <Overlay>
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            position: "relative",
+            fontFamily: "DungGeunMo",
+            textShadow: "0.5px 0.5px 2px white, -0.5px -0.5px 2px white",
+            color: "rgba(0, 0, 0, 0.8)",
+          }}
+        >
+          {gameStarted ? (
+            <></>
+          ) : (
+            <Wrapper style={{ zIndex: 1 }}>
+              <Background>
+                <HomeBox>
+                  <Title>TETRIS</Title>
+                  <BtnText
+                    onClick={() => {
+                      document.addEventListener("keydown", (event) => {
+                        pressBtn(event, background.current);
+                      });
+                      document.addEventListener("keyup", (event) => {
+                        upBtn(event, background.current);
+                      });
+                      setGameStarted(true);
+                      setTimeout(init, 1000);
+                    }}
+                  >
+                    PLAY
+                  </BtnText>
+                </HomeBox>
+              </Background>
+            </Wrapper>
+          )}
+          <Wrapper>
+            <Background>
+              <Game>
+                <ul className="background" ref={background}></ul>
+              </Game>
+              <h1 className="score">{score}</h1>
+            </Background>
+          </Wrapper>
+        </div>
+      </Overlay>
     </Box>
   );
 };

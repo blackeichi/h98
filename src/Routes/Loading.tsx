@@ -1,6 +1,12 @@
 import React from "react";
 import { Icon } from "../Components/Icon";
-import { Header, IconImg, InfoText, Input, RowBox } from "../Components/Style";
+import {
+  Header,
+  IconImg,
+  InfoText,
+  Input,
+  RowBox,
+} from "../Components/CommonStyle";
 import { useForm } from "react-hook-form";
 import {
   BootImg,
