@@ -2,8 +2,12 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const Game = styled.div`
-  background-color: white;
   border: 3px solid rgba(0, 0, 0, 0.8);
+  position: relative;
+  @media screen and (max-height: 750px) {
+    height: 600px;
+  }
+  height: 700px;
   ul {
     @media screen and (max-height: 750px) {
       width: 300px;
@@ -25,11 +29,32 @@ export const Game = styled.div`
           }
           width: 35px;
           height: 35px;
-          //box-shadow: -0.2px 0 #333, 0 0.2px #333, 0.2px 0 #333, 0 -0.2px #333;
         }
       }
     }
   }
+`;
+export const GameOverBox = styled.div`
+  width: 100%;
+  @media screen and (max-height: 750px) {
+    height: 600px;
+  }
+  height: 700px;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 150px;
+  gap: 10px;
+  box-sizing: border-box;
+`;
+export const GameoverText = styled.h1`
+  color: white;
+  text-shadow: 0.5px 0.5px 2px white, -0.5px -0.5px 2px white;
+  font-size: 40px;
 `;
 export const HomeBox = styled.div`
   display: flex;
@@ -41,12 +66,26 @@ export const HomeBox = styled.div`
 `;
 export const Title = styled.h1`
   font-size: 80px;
-  font-weight: bold;
 `;
 export const BtnText = styled(motion.h1)`
   font-size: 25px;
-  font-weight: bold;
+
   cursor: pointer;
+`;
+export const NextBlock = styled.img`
+  height: 140px;
+`;
+export const InfoBox = styled.div`
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-left: 10px;
+  width: 100%;
+`;
+export const InfoBox_Text = styled.h1`
+  font-size: 35px;
 `;
 
 export const Blocks: any = {
