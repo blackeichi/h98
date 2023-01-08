@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { Icon } from "../../Icon";
 import {
   Background,
@@ -11,18 +11,7 @@ import {
   RowBox,
   Wrapper,
 } from "../../CommonStyle";
-import {
-  Blocks,
-  BtnText,
-  Game,
-  HomeBox,
-  InfoBox,
-  NextBlock,
-  Title,
-  InfoBox_Text,
-  GameOverBox,
-  GameoverText,
-} from "./style";
+import { BtnText, HomeBox, Title } from "./style";
 
 import "./style.css";
 import { GameScreen } from "./Components/GameScreen";
